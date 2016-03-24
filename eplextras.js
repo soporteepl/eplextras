@@ -1,4 +1,41 @@
-//version 3.0 
+function EPL_METRICS_EXTRA_HELPERS() {
+
+	var 
+		_eplDoc  	= window.parent.eplDoc,
+		_th		 	= _eplDoc.eplTH,
+		getHandler	= 	function (metric) {
+				var m = metric;
+				return function() {_eplDoc.th4.registrarAccion(_eplDoc.epl.getAd(bannerId), m)}
+		};
+
+	this.completo       = gethandler(1);
+	this.encendido      = gethandler(2);
+	this.start_button   = gethandler(3);
+	this.stop_button    = gethandler(4);
+	this.restart_button = gethandler(5);
+	this.sound_off      = gethandler(6);
+	this.sound_on       = gethandler(7);
+	this.close_button   = gethandler(8);
+	this.desplegar      = gethandler(9);
+	this.replegar       = gethandler(10);
+	this.demorado       = gethandler(11);
+	this.not_found      = gethandler(12);
+	this.compartir      = gethandler(13);
+	this.descargar      = gethandler(14);
+	this.ver_fotos      = gethandler(15);
+
+	this.startTimer = function(){
+        _th.timerStart(bannerId);
+	}
+
+	this.stopTimer = function(){
+        _th.timerStop(bannerId);
+	}
+
+	this.customAction = function (id){//id entre 0-9
+        _th.customAction(bannerId, id);
+	}	
+} 
 
 function EPL_IFRAME_EXTRA_HELPERS() {
 
@@ -202,6 +239,6 @@ function EPL_IFRAME_EXTRA_HELPERS() {
 
 };
 
-var eplCIf = new EPL_IFRAME_EXTRA_HELPERS();
-
-
+var
+	eplCIf    = new EPL_IFRAME_EXTRA_HELPERS(),
+	eplMetric = new EPL_METRICS_EXTRA_HELPERS();
